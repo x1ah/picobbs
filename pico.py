@@ -194,8 +194,10 @@ class Echo(MsgChannel):
 
 
 if __name__ == "__main__":
-    session_id = os.getenv("PICO_SESSION_ID")
-    if not session_id:
-        print("session not found")
-    else:
-        cli = PicoBBS(session_id=session_id, channels=[Echo()])
+    cli = PicoBBS(session_id="<cookie 中的 sessionid 值>", channels=[
+        Echo(),
+        LarkChannel("<飞书 webhook>"),
+    ])
+    cli.sign()          # 执行每日签到
+    cli.publish_post()  # 每日发帖
+    cli.comment()       # 发送 20 个评论
