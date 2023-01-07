@@ -12,9 +12,9 @@ Pico 论坛每日积分任务脚本，积分规则：
 
 ```python
 if __name__ == "__main__":
-    cli = PicoBBS(session_id="<cookie 中的 sessionid 值>", channels=[
+    cli = PicoBBS(session_id="cookie 中的 sessionid 值", channels=[
         Echo(),
-        LarkChannel("<飞书 webhook>")
+        LarkChannel("飞书 webhook")
     ])
     cli.sign()          # 执行每日签到
     cli.publish_post()  # 每日发帖
