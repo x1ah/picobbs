@@ -107,8 +107,57 @@ class PicoBBS:
 
         return f"每日一首古诗打卡：{title}（{author}•{dynasty}）", abstract, f"<p>{text}</p>"
 
+    def get_post_content_v2(self) -> Tuple[str, str, str]:
+        """随机内容，防止审核不通过"""
+        games = [
+            "红色物质2",
+            "超弦乐队",
+            "爆裂厨房",
+            "高尔夫 5 俱乐部",
+            "超级滑翔翼",
+            "魔法拼图",
+            "枪战世界",
+            "迷你都市",
+            "海岛余生",
+            "台球 VR",
+            "实况钓鱼",
+            "光之乐团",
+            "零口径",
+            "多合一运动",
+            "荣耀擂台",
+            "乒乓致胜 11 分",
+            "虚幻赛车",
+            "超然一刻",
+            "求生国度",
+            "不朽的遗产",
+            "雇佣战士",
+            "魔杖联盟",
+            "玩命特工",
+            "亚利桑那阳光",
+            "僵尸之地",
+            "维京战鼓",
+            "OhShape",
+            "Hitstream",
+            "激燃快鼓",
+            "动感音旅",
+            "方寸幻境",
+            "爆裂球拍",
+            "暴走街区",
+            "雇佣战士",
+        ]
+        game = random.choice(games)
+        tpls = [
+            (f"有一起玩{game}的吗？", f"一个人玩有点无聊，有没有一起玩的，交流交流，感觉{game}这个还挺好玩的"),
+            (f"一个人玩{game}有点无聊，有没有一起玩的", f"也没有也喜欢玩{game}这个游戏的，加个好友，一起交流交流，一起玩"),
+            (f"请问{game}这个游戏有什么技巧吗？", f"玩了好久，玩的好差，请问{game}这个游戏有没有什么技巧，大家分享一下"),
+            (f"有没有一起玩{game}的，加个好友一起玩", f"刚玩{game}没多久，大家加个好友，或者交流交流，一起玩啊。感觉这个游戏还不错。"),
+            (f"今天玩了 2 小时{game}，太好玩了！", f"今天陆陆续续玩了两个小时{game}，真是太好玩了，明天继续玩，推荐大家试试。")
+        ]
+        title, content = random.choice(tpls)
+        return title, title, content
+        
     def publish_post(self):
-        title, abstract, text = self.get_post_content()
+        title, abstract, text = self.get_post_content_v2()
         draft = self.session.post(
             "https://bbs.picoxr.com/ttarch/api/content/v1/content/create?app_id=264482&service_id=0&lang=zh-Hans-CN&web_id=7184406560655279619", 
             headers=self.http_headers,
