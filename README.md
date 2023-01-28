@@ -25,4 +25,6 @@ if __name__ == "__main__":
 4. 运行脚本：`python pico.py`
 5. [可选] 设置 cronjob 每日运行
 6. 运行效果
+
+
 ![image](https://user-images.githubusercontent.com/14919255/210379037-bfd44dba-b736-43ed-9a51-1b95e57cdfcd.png)
